@@ -35,11 +35,14 @@ def get_newspaper_image(image_name=get_img_name()):
     DATE = str(datetime.date.today())
     color_number = 0
 
-    fontlight = ImageFont.truetype("news/fonts/Roboto_Slab/RobotoSlab-Light.ttf", 70)
-    fontbold = ImageFont.truetype("news/fonts/Roboto_Slab/RobotoSlab-Bold.ttf", 120)
+    fontlight = ImageFont.truetype(
+        "news/fonts/Roboto_Slab/RobotoSlab-Light.ttf", 70)
+    fontbold = ImageFont.truetype(
+        "news/fonts/Roboto_Slab/RobotoSlab-Bold.ttf", 120)
     fontroboto = ImageFont.truetype("news/fonts/Roboto/Roboto-Regular.ttf", 36)
 
-    im = Image.open(f'news/images/{image_name}').resize((2000, 1000), Image.ANTIALIAS)
+    im = Image.open(
+        f'news/images/{image_name}').resize((2000, 1000), Image.ANTIALIAS)
     fl = Image.open('news/system_img/filter1.jpg')
     im.size
     filtered_image = Image.blend(im, fl, 0.4)
@@ -68,7 +71,7 @@ def get_newspaper_image(image_name=get_img_name()):
             color = GREEN
 
         draw.text((x + 135, y + 42), str(h24_changes),
-        color, font=fontroboto)
+                  color, font=fontroboto)
 
     if color_number > 3:
         color = RED
@@ -76,10 +79,10 @@ def get_newspaper_image(image_name=get_img_name()):
         color = GREEN
 
     draw.text((100, 250), DATE,
-    color, font=fontlight)
+              color, font=fontlight)
 
     draw.text((100, 100), "CryptoNews",
-    (255, 255, 255), font=fontbold)
+              (255, 255, 255), font=fontbold)
 
     imgByteArr = BytesIO()
     filtered_image.save(imgByteArr, format='PNG')
